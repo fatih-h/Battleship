@@ -35,13 +35,20 @@ function Gameboard(m, n){
         }
     }
 
-    // const receiveAttack = (x, y) => {
-    //     if(arr[x][y] == {value: 1}){
+    const receiveAttack = (x, y) => {
+        if(arr[y][x] == null){
+            arr[y][x] = undefined;
             
-    //     }
-    // }
+        }else if (arr[y][x] == undefined){
+            
+        }else{
+            let craft = arr[y][x];
+            craft.value = 0;
+            craft.ship.hit(craft.position);
+        }
+    }
 
-    return {carrier, battleship, destroyer, submarine, patrolBoat, arr, length, coordinates}
+    return {carrier, battleship, destroyer, submarine, patrolBoat, arr, length, coordinates, receiveAttack}
 }
 
 export default Gameboard;
