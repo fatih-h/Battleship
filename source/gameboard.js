@@ -35,6 +35,7 @@ function Gameboard(m, n){
         }
     }
 
+
     const receiveAttack = (x, y) => {
         if(arr[y][x] == null){
             arr[y][x] = undefined;
