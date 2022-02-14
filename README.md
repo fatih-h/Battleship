@@ -1,1 +1,1 @@
-Battleship Game 
+Battleship Game with HTML & CSS & Javascript (vanilla, jest, babel)

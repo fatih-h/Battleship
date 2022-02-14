@@ -1,31 +1,29 @@
 
 function Ship(length){
-    
+
+    /*Object Creation Tasks */
     let arr = new Array(length);
-    for(let i = 0; i < length ; i++){
+    for(let i = 0; i < length ;i++){
         arr[i] = 1;
     }
-
+    /*Object Property */
     this.length = length;
-    const hit = (index) => {
+    
+    /*Object Methods */
+    this.hit = (index) => {
         arr[index] = 0;
-        return arr;
     }
-
-    const isSunk = () => {
-        let counter = 0;
-        for(let i = 0; i < length ; i++){
+    this.isSunk = () => {
+        for(let i = 0; i < length; i++){
             if(arr[i] > 0){
-                counter++;
+                return false;
             }
         }
-        if(counter > 0){
-            return false;
-        }else{
-            return true;
-        }
+        return true;
     }
-    return {arr, length, hit, isSunk}
+    this.section = () => {
+        return arr;
+    }
 }
 
-export default Ship; 
+export default Ship;

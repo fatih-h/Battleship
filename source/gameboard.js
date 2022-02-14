@@ -1,55 +1,91 @@
 import Ship from './ship';
 
-function Gameboard(m, n){
+function Gameboard(){
+    /*Object Creation Tasks */
+    let arr = new Array(10);
+    for(let i = 0; i < (10); i++){
+        arr[i] = new Array(10);
+        for(let j = 0; j < 10; j++){
+            arr[i][j] = {x: j, y: i, safe: true}
+        }
+    }
+
+    /*Object Property */
+    this.length = 100;
+    let axis = 'x';
+
+    /*Object Methods */
+    this.ship = {
+        carrier : new Ship(5),
+        battleship : new Ship(4),
+        destroyer : new Ship(4),
+        submarine : new Ship(3),
+        patrolboat : new Ship(2),
+        allSunk: () => {
+            if(carrier.isSunk() && battleship.isSunk() && destroyer.isSunk() && submarine.isSunk() && patrolboat.isSunk()){
+                return 'All ships have been sunk';
+            }
+        }
+    }
     
-    let carrier = new Ship(5);
-    let battleship = new Ship(4);
-    let destroyer = new Ship(4);
-    let submarine = new Ship(3);
-    let patrolBoat = new Ship(2);
 
-    const length = m * n;
-
-    let arr = new Array(m);
-    for(let i = 0 ; i < m; i++){
-        arr[i] = new Array(n);
-        for(let j = 0; j < n; j++){
-            arr[i][j] = null;
-        }
-    }
-
-    const coordinates = (type, axis, x, y) => {
-        
+    this.axis = () => {
         if(axis == 'x'){
-            for(let i = x ; i < type.length + x ; i++){
-                // arr[y][i] = type.arr[i-x];
-                arr[y][i] = {ship: type, position: i-x, value: type.arr[i-x]}
-            }
-        }
-        if(axis == 'y'){
-            for(let i = y; i < type.length + y ; i++){
-                // arr[i][x] = type.arr[i-y];
-                arr[i][x] = {ship: type, position: i-y, value: type.arr[i-y]}
-
-            }
-        }
-    }
-
-
-    const receiveAttack = (x, y) => {
-        if(arr[y][x] == null){
-            arr[y][x] = undefined;
-            
-        }else if (arr[y][x] == undefined){
-            
+           axis = 'y';
         }else{
-            let craft = arr[y][x];
-            craft.value = 0;
-            craft.ship.hit(craft.position);
+            axis = 'x';
         }
     }
+    this.put = (veh, x, y) => {
 
-    return {carrier, battleship, destroyer, submarine, patrolBoat, arr, length, coordinates, receiveAttack}
+        if(axis == 'x'){
+            let clear = true;
+            for(let i = 0 ; i < veh.length ;i++){
+                if(arr[y][x + i].safe != true){
+                    clear = false;
+                }
+            } 
+            if(x + veh.length < 10 && y < 10){
+                if(clear){
+                    for(let i = 0 ; i < veh.length ;i++){
+                        arr[y][x + i].safe = veh;
+                        arr[y][x + i].position = i;
+                    }
+                }
+            }
+        }
+        else{
+            let clear = true;
+            for(let i = 0 ; i < veh.length ;i++){
+                if(arr[y + i][x].safe != true){
+                    clear = false;
+                }
+            }
+            if(x < 10 && y + veh.length < 10){
+                if(clear){
+                    for(let i = 0; i < veh.length ;i++){
+                        arr[y + i][x].safe = veh;
+                        arr[y + i][x].position = i;
+                    }
+                }
+            }
+        }
+    }
+    
+    this.receiveAttack = (x, y) => {
+        if(arr[y][x].safe == true){
+            arr[y][x].safe == false;
+        }
+        else if(arr[y][x].safe != false){
+            let index = arr[y][x].position;
+            let ship = arr[y][x].safe;
+            ship.hit(index);
+        }
+        
+    }
+    this.board = () => {
+        return arr;
+    }
 }
 
 export default Gameboard;
