@@ -34,7 +34,7 @@ function Gameboard(){
     }
     
 
-    this.axis = (value) => {
+    this.axisChange = (value) => {
         if(value == 'y'){
            axis = 'y';
         }else if(value == 'x'){

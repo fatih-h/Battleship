@@ -108,3 +108,30 @@ it('Creating Player2 and testing(3) ai board', () => {
     expect(counter).toBe(83);
 });
 
+it('testing ai board and shooting', () => {
+    let player2 = new Player(new Gameboard());
+    player2.aiRandomise();
+
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+    player2.aiShot();
+
+    let arr = []
+    for(let i = 0; i < 10 ; i++){
+        for(let j = 0; j < 10; j++){
+            if(player2.getPlayer().board()[j][i].hasOwnProperty('position')){
+                arr.push([player2.getPlayer().board()[j][i].x,player2.getPlayer().board()[j][i].y])
+            }
+        }
+    }
+    expect(arr.length).toBe(17);
+
+});

@@ -31,7 +31,7 @@ it('Gameboard placement and receive attack', () => {
 
 it('Gameboard y placement', () => {
     let gameboard = new Gameboard();
-    gameboard.axis('y');
+    gameboard.axisChange('y');
     gameboard.put(gameboard.ship.patrolboat, 0, 0);
     gameboard.receiveAttack(0, 1);
     expect(gameboard.ship.patrolboat.section()).toEqual([1, 0]);        
@@ -40,10 +40,10 @@ it('Gameboard y placement', () => {
 it('Gameboard ships coordinats after placement', () => {
     let gameboard = new Gameboard();
     gameboard.put(gameboard.ship.carrier, 0, 0);
-    gameboard.axis('y'); 
+    gameboard.axisChange('y'); 
     gameboard.put(gameboard.ship.battleship, 8, 0);
     gameboard.put(gameboard.ship.destroyer, 4, 3);
-    gameboard.axis('x');
+    gameboard.axisChange('x');
     gameboard.put(gameboard.ship.submarine, 7, 7);
     gameboard.put(gameboard.ship.patrolboat, 3, 1);
     
