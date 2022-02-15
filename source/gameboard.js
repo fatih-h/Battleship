@@ -14,6 +14,7 @@ function Gameboard(){
     this.length = 100;
     let axis = 'x';
     let clear = false;
+    
     /*Object Methods */
     this.ship = {
         carrier : new Ship(5),
@@ -22,17 +23,21 @@ function Gameboard(){
         submarine : new Ship(3),
         patrolboat : new Ship(2),
         allSunk: () => {
-            if(carrier.isSunk() && battleship.isSunk() && destroyer.isSunk() && submarine.isSunk() && patrolboat.isSunk()){
+            if(this.ship.carrier.isSunk() && 
+            this.ship.battleship.isSunk() && 
+            this.ship.destroyer.isSunk() && 
+            this.ship.submarine.isSunk() && this.ship.
+            patrolboat.isSunk()){
                 return 'All ships have been sunk';
             }
         }
     }
     
 
-    this.axis = () => {
-        if(axis == 'x'){
+    this.axis = (value) => {
+        if(value == 'y'){
            axis = 'y';
-        }else{
+        }else if(value == 'x'){
             axis = 'x';
         }
     }
@@ -42,32 +47,33 @@ function Gameboard(){
         if(axis == 'x'){
             clear = true;
             for(let i = 0 ; i < veh.length ;i++){
-                if(arr[y][x + i].safe != true){
+                if(arr[y][x + i].safe == false){
                     clear = false;
                 }
             } 
-            if(x + veh.length <= 10 && y <= 10){
+            if(x + veh.length <= 10 && y < 10){
                 if(clear){
                     for(let i = 0 ; i < veh.length ;i++){
-                        arr[y][x + i].safe = veh;
+                        arr[y][x + i].veh = veh;
                         arr[y][x + i].position = i;
+                        
                     }
                 }
             }else{
                 clear=false;
             }
         }
-        else{
+        if(axis == 'y'){
             clear = true;
             for(let i = 0 ; i < veh.length ;i++){
-                if(arr[y + i][x].safe != true){
+                if(arr[y + i][x].safe == false){
                     clear = false;
                 }
             }
-            if(x <= 10 && y + veh.length <= 10){
+            if(x < 10 && y + veh.length <= 10){
                 if(clear){
                     for(let i = 0; i < veh.length ;i++){
-                        arr[y + i][x].safe = veh;
+                        arr[y + i][x].veh = veh;
                         arr[y + i][x].position = i;
                     }
                 }
@@ -78,13 +84,11 @@ function Gameboard(){
     }
     
     this.receiveAttack = (x, y) => {
-        if(arr[y][x].safe == true){
-            arr[y][x].safe == false;
-        }
-        else if(arr[y][x].safe != false){
+        arr[y][x].safe = false;
+        if(arr[y][x].hasOwnProperty('position')){
             let index = arr[y][x].position;
-            let ship = arr[y][x].safe;
-            ship.hit(index);
+            let tool = arr[y][x].veh;
+            tool.hit(index);
         }
         
     }
@@ -92,7 +96,7 @@ function Gameboard(){
         return arr;
     }
     this.clearFalse = () =>{
-        clear=false;
+        clear = false;
     }
     this.clearArea = () => {
         return clear;

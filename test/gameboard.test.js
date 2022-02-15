@@ -19,7 +19,7 @@ it('Gameboard checks ships', () => {
 it('Gameboard receiveAttack(x, y)', () => {
     let gameboard = new Gameboard();
     gameboard.receiveAttack(0, 0);
-    expect(gameboard.board()[0][0]).toEqual({x: 0, y: 0, safe: true});
+    expect(gameboard.board()[0][0]).toEqual({x: 0, y: 0, safe: false});
 });
 
 it('Gameboard placement and receive attack', () => {
@@ -31,7 +31,7 @@ it('Gameboard placement and receive attack', () => {
 
 it('Gameboard y placement', () => {
     let gameboard = new Gameboard();
-    gameboard.axis();
+    gameboard.axis('y');
     gameboard.put(gameboard.ship.patrolboat, 0, 0);
     gameboard.receiveAttack(0, 1);
     expect(gameboard.ship.patrolboat.section()).toEqual([1, 0]);        
@@ -40,11 +40,35 @@ it('Gameboard y placement', () => {
 it('Gameboard ships coordinats after placement', () => {
     let gameboard = new Gameboard();
     gameboard.put(gameboard.ship.carrier, 0, 0);
-    gameboard.axis(); 
+    gameboard.axis('y'); 
     gameboard.put(gameboard.ship.battleship, 8, 0);
     gameboard.put(gameboard.ship.destroyer, 4, 3);
-    gameboard.axis();
+    gameboard.axis('x');
     gameboard.put(gameboard.ship.submarine, 7, 7);
     gameboard.put(gameboard.ship.patrolboat, 3, 1);
     
+    gameboard.receiveAttack(0, 0);
+    gameboard.receiveAttack(1, 0);
+    gameboard.receiveAttack(2, 0);
+    gameboard.receiveAttack(3, 0);
+    gameboard.receiveAttack(4, 0);
+   
+    gameboard.receiveAttack(8, 0);
+    gameboard.receiveAttack(8, 1);
+    gameboard.receiveAttack(8, 2);
+    gameboard.receiveAttack(8, 3);
+
+    gameboard.receiveAttack(4, 3);
+    gameboard.receiveAttack(4, 4);
+    gameboard.receiveAttack(4, 5);
+
+    gameboard.receiveAttack(7, 7);
+    gameboard.receiveAttack(8, 7);
+    gameboard.receiveAttack(9, 7);
+
+    gameboard.receiveAttack(3, 1);
+    gameboard.receiveAttack(4, 1);
+
+    expect(gameboard.ship.allSunk()).toBe('All ships have been sunk');
 });
+

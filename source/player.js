@@ -1,95 +1,118 @@
 
 function Player(pl){
+    
+    this.shotRecords = [];
 
     this.standartPlace = () => {
-        pl.axis();
+        pl.axis('y');
         pl.put(pl.ship.carrier, 1, 3);
-        pl.axis();
+        pl.axis('x');
         pl.put(pl.ship.battleship, 6, 1);
         pl.put(pl.ship.destroyer, 2, 8);
-        pl.axis();
+        pl.axis('y');
         pl.put(pl.ship.submarine, 6, 4);
-        pl.axis();
+        pl.axis('x');
         pl.put(pl.ship.patrolboat, 8, 7);
     }
 
     this.aiRandomise = () => {
 
         let random = (length) => { 
-            return Math.floor(Math.random() * (length + 1));
+            return Math.floor(Math.random() * (length));
         }
         let dice = () => {
-            return Math.floor(Math.random * 2);
+            return Math.floor(Math.random * 1);
         }
-        let the = pl.ship;
+        
 
         while(!pl.clearArea()){
-            if(dice){
-                pl.axis();
+            if(dice()){
+                pl.axis('y');
+                pl.put(pl.ship.carrier, random(pl.ship.carrier.length), 10-random(pl.ship.carrier.length));
+            }else{
+                pl.axis('x');
+                pl.put(pl.ship.carrier, 10-random(pl.ship.carrier.length), random(pl.ship.carrier.length));
             }
-            pl.put(the.carrier, random(the.carrier.length), random(the.carrier.length));   
+               
         }
+
         pl.clearFalse();
         while(!pl.clearArea()){
-            if(dice){
-                pl.axis();
+            if(dice()){
+                pl.axis('y');
+                pl.put(pl.ship.battleship, random(pl.ship.battleship.length), 10-random(pl.ship.battleship.length));
+            }else{
+                pl.axis('x');
+                pl.put(pl.ship.battleship, 10-random(pl.ship.battleship.length), random(pl.ship.battleship.length));
             }
-            pl.put(the.battleship, random(the.battleship.length), random(the.battleship.length));
+            
         }
+
         pl.clearFalse();
         while(!pl.clearArea()){
-            if(dice){
-                pl.axis();
+            if(dice()){
+                pl.axis('y');
+                pl.put(pl.ship.destroyer, random(pl.ship.destroyer.length), 10-random(pl.ship.destroyer.length));
+            }else{
+                pl.axis('x');
+                pl.put(pl.ship.destroyer, 10-random(pl.ship.destroyer.length), random(pl.ship.destroyer.length));
             }
-            pl.put(the.destroyer, random(the.destroyer.length), random(the.destroyer.length));
         }
+
         pl.clearFalse();
         while(!pl.clearArea()){
-            if(dice){
-                pl.axis();
+            if(dice()){
+                pl.axis('y');
+                pl.put(pl.ship.submarine, random(pl.ship.submarine.length), 10-random(pl.ship.submarine.length));
+            }else{
+                pl.axis('x');
+                pl.put(pl.ship.submarine, 10-random(pl.ship.submarine.length), random(pl.ship.submarine.length));
             }
-            pl.put(the.submarine, random(the.submarine.length), random(the.submarine.length));
         }
+
         pl.clearFalse();
         while(!pl.clearArea()){
-            if(dice){
-                pl.axis();
+            if(dice()){
+                pl.axis('y');
+                pl.put(pl.ship.patrolboat, random(pl.ship.patrolboat.length), 10-random(pl.ship.patrolboat.length));
+            }else{
+                pl.axis('x');
+                pl.put(pl.ship.patrolboat, 10-random(pl.ship.patrolboat.length), random(pl.ship.patrolboat.length));
             }
-            pl.put(the.patrolboat, random(the.patrolboat.length), random(the.patrolboat.length));
         }
 
     }
-
+    
     this.aiShot = () => {
-        let shotRecords = [];
+
         let random = () => {
-            return Math.floor(Math.random() * 11);
+            return Math.floor(Math.random() * 10);
         }
 
-        let shot = () => {
-            let control = false;
-           while(!control){
-                let x = random();
-                let y = random();
+        let control = false;
+        while(!control){
+            let x = random();
+            let y = random();
 
-               let isRandom = true;
-                for(let i = 0; i < shotRecords.length; i++){
-                    if(shotRecords[i] == pl.board()[y][x]){
-                        isRandom = false;
-                    }
-            
-                }
-                shotRecords.push(pl.board()[y][x])
-                if(isRandom){
-                    pl.receiveAttack(x, y);
-                }
-                control = true;
+            let isRandom = true;
+            for(let i = 0; i < this.shotRecords.length; i++){
+                if(this.shotRecords[i] == pl.board()[y][x]){
+                    isRandom = false;
+               }
             }
+            if(isRandom){
+                this.shotRecords.push(pl.board()[y][x])
+                pl.receiveAttack(x, y);
+                control = true;
+            } 
         }
-        let getRecords = () => {
-            return shotRecords;
-        }
-        {shotRecords, shot, getRecords}
+       
+    }
+    this.getRecords = () => {
+        return this.shotRecords;
+    }
+    this.getPlayer = () => {
+        return pl;
     }
 }
 export default Player;
