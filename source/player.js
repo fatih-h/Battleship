@@ -28,10 +28,10 @@ function Player(pl){
         while(!pl.clearArea()){
             if(dice()){
                 pl.axis('y');
-                pl.put(pl.ship.carrier, random(pl.ship.carrier.length), 10-random(pl.ship.carrier.length));
+                pl.put(pl.ship.carrier, random(10), random(10 - pl.ship.carrier.length));
             }else{
                 pl.axis('x');
-                pl.put(pl.ship.carrier, 10-random(pl.ship.carrier.length), random(pl.ship.carrier.length));
+                pl.put(pl.ship.carrier, random(10 - pl.ship.carrier.length), random(10));
             }
                
         }
@@ -40,10 +40,10 @@ function Player(pl){
         while(!pl.clearArea()){
             if(dice()){
                 pl.axis('y');
-                pl.put(pl.ship.battleship, random(pl.ship.battleship.length), 10-random(pl.ship.battleship.length));
+                pl.put(pl.ship.battleship, random(10), random(10 - pl.ship.battleship.length));
             }else{
                 pl.axis('x');
-                pl.put(pl.ship.battleship, 10-random(pl.ship.battleship.length), random(pl.ship.battleship.length));
+                pl.put(pl.ship.battleship, random(10 - pl.ship.battleship.length), random(10));
             }
             
         }
@@ -52,10 +52,10 @@ function Player(pl){
         while(!pl.clearArea()){
             if(dice()){
                 pl.axis('y');
-                pl.put(pl.ship.destroyer, random(pl.ship.destroyer.length), 10-random(pl.ship.destroyer.length));
+                pl.put(pl.ship.destroyer, random(10), random(10 - pl.ship.destroyer.length));
             }else{
                 pl.axis('x');
-                pl.put(pl.ship.destroyer, 10-random(pl.ship.destroyer.length), random(pl.ship.destroyer.length));
+                pl.put(pl.ship.destroyer, random(10 - pl.ship.destroyer.length), random(10));
             }
         }
 
@@ -63,10 +63,10 @@ function Player(pl){
         while(!pl.clearArea()){
             if(dice()){
                 pl.axis('y');
-                pl.put(pl.ship.submarine, random(pl.ship.submarine.length), 10-random(pl.ship.submarine.length));
+                pl.put(pl.ship.submarine, random(10), random(10 - pl.ship.submarine.length));
             }else{
                 pl.axis('x');
-                pl.put(pl.ship.submarine, 10-random(pl.ship.submarine.length), random(pl.ship.submarine.length));
+                pl.put(pl.ship.submarine, random(10 - pl.ship.submarine.length), random(10));
             }
         }
 
@@ -74,10 +74,10 @@ function Player(pl){
         while(!pl.clearArea()){
             if(dice()){
                 pl.axis('y');
-                pl.put(pl.ship.patrolboat, random(pl.ship.patrolboat.length), 10-random(pl.ship.patrolboat.length));
+                pl.put(pl.ship.patrolboat, random(10), random(10 - pl.ship.patrolboat.length));
             }else{
                 pl.axis('x');
-                pl.put(pl.ship.patrolboat, 10-random(pl.ship.patrolboat.length), random(pl.ship.patrolboat.length));
+                pl.put(pl.ship.patrolboat, random(10 - pl.ship.patrolboat.length), random(10));
             }
         }
 

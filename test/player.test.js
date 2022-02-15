@@ -21,7 +21,7 @@ it('Creating Player1 and testing board', () => {
 });
 
 
-it.only('Creating Player2 and testing ai board', () => {
+it('Creating Player2 and testing ai board', () => {
     let player2 = new Player(new Gameboard());
     player2.aiRandomise();
 
@@ -39,7 +39,9 @@ it.only('Creating Player2 and testing ai board', () => {
     expect(counter).toBe(83);
 });
 
-it('Testing player2 shoots on player1', () => {
+
+
+it('Testing player2 ai shoots on player1', () => {
     let player1 = new Player(new Gameboard());
     let player2 = new Player(new Gameboard());
 
@@ -57,8 +59,52 @@ it('Testing player2 shoots on player1', () => {
     player2.aiShot();
     player2.aiShot();
     player2.aiShot();
- 
-    expect(player2.getPlayer().board()).toEqual([]);
+    
+    let counter = 0;
+    for(let i = 0; i < 10 ; i++){
+        for(let j = 0; j < 10; j++){
+            if(player2.getPlayer().board()[j][i].safe == false){
+                counter++;
+            }
+        }
+    }
+    
+    expect(counter).toBe(11);
+    
+});
 
+it('Creating Player2 and testing(2) ai board', () => {
+    let player2 = new Player(new Gameboard());
+    player2.aiRandomise();
+
+    let counter = 0;
+    for(let i = 0; i < 10 ; i++){
+        for(let j = 0; j < 10; j++){
+            if(player2.getPlayer().board()[j][i].safe == true){
+                counter++;
+            }
+            if(player2.getPlayer().board()[j][i].hasOwnProperty('position')){
+                counter--;
+            }
+        }
+    }
+    expect(counter).toBe(83);
+});
+it('Creating Player2 and testing(3) ai board', () => {
+    let player2 = new Player(new Gameboard());
+    player2.aiRandomise();
+
+    let counter = 0;
+    for(let i = 0; i < 10 ; i++){
+        for(let j = 0; j < 10; j++){
+            if(player2.getPlayer().board()[j][i].safe == true){
+                counter++;
+            }
+            if(player2.getPlayer().board()[j][i].hasOwnProperty('position')){
+                counter--;
+            }
+        }
+    }
+    expect(counter).toBe(83);
 });
 

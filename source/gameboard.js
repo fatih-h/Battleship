@@ -47,38 +47,32 @@ function Gameboard(){
         if(axis == 'x'){
             clear = true;
             for(let i = 0 ; i < veh.length ;i++){
-                if(arr[y][x + i].safe == false){
+                if(arr[y][x + i].hasOwnProperty('position')){
                     clear = false;
                 }
             } 
-            if(x + veh.length <= 10 && y < 10){
-                if(clear){
-                    for(let i = 0 ; i < veh.length ;i++){
-                        arr[y][x + i].veh = veh;
-                        arr[y][x + i].position = i;
-                        
-                    }
+            
+            if(clear){
+                for(let i = 0 ; i < veh.length ;i++){
+                    arr[y][x + i].veh = veh;
+                    arr[y][x + i].position = i;
+                    
                 }
-            }else{
-                clear=false;
             }
+            
         }
-        if(axis == 'y'){
+        else if(axis == 'y'){
             clear = true;
             for(let i = 0 ; i < veh.length ;i++){
-                if(arr[y + i][x].safe == false){
+                if(arr[y + i][x].hasOwnProperty('position')){
                     clear = false;
                 }
             }
-            if(x < 10 && y + veh.length <= 10){
-                if(clear){
-                    for(let i = 0; i < veh.length ;i++){
-                        arr[y + i][x].veh = veh;
-                        arr[y + i][x].position = i;
-                    }
+            if(clear){
+                for(let i = 0; i < veh.length ;i++){
+                    arr[y + i][x].veh = veh;
+                    arr[y + i][x].position = i;
                 }
-            }else{
-                clear = false;
             }
         }
     }
@@ -95,7 +89,7 @@ function Gameboard(){
     this.board = () => {
         return arr;
     }
-    this.clearFalse = () =>{
+    this.clearFalse = () => {
         clear = false;
     }
     this.clearArea = () => {
