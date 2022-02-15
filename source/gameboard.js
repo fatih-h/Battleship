@@ -13,12 +13,12 @@ function Gameboard(){
     /*Object Property */
     this.length = 100;
     let axis = 'x';
-
+    let clear = false;
     /*Object Methods */
     this.ship = {
         carrier : new Ship(5),
         battleship : new Ship(4),
-        destroyer : new Ship(4),
+        destroyer : new Ship(3),
         submarine : new Ship(3),
         patrolboat : new Ship(2),
         allSunk: () => {
@@ -36,38 +36,43 @@ function Gameboard(){
             axis = 'x';
         }
     }
+
     this.put = (veh, x, y) => {
 
         if(axis == 'x'){
-            let clear = true;
+            clear = true;
             for(let i = 0 ; i < veh.length ;i++){
                 if(arr[y][x + i].safe != true){
                     clear = false;
                 }
             } 
-            if(x + veh.length < 10 && y < 10){
+            if(x + veh.length <= 10 && y <= 10){
                 if(clear){
                     for(let i = 0 ; i < veh.length ;i++){
                         arr[y][x + i].safe = veh;
                         arr[y][x + i].position = i;
                     }
                 }
+            }else{
+                clear=false;
             }
         }
         else{
-            let clear = true;
+            clear = true;
             for(let i = 0 ; i < veh.length ;i++){
                 if(arr[y + i][x].safe != true){
                     clear = false;
                 }
             }
-            if(x < 10 && y + veh.length < 10){
+            if(x <= 10 && y + veh.length <= 10){
                 if(clear){
                     for(let i = 0; i < veh.length ;i++){
                         arr[y + i][x].safe = veh;
                         arr[y + i][x].position = i;
                     }
                 }
+            }else{
+                clear = false;
             }
         }
     }
@@ -85,6 +90,12 @@ function Gameboard(){
     }
     this.board = () => {
         return arr;
+    }
+    this.clearFalse = () =>{
+        clear=false;
+    }
+    this.clearArea = () => {
+        return clear;
     }
 }
 

@@ -10,7 +10,7 @@ it('Gameboard checks ships', () => {
 
     expect(gameboard.ship.carrier.length).toBe(5);
     expect(gameboard.ship.battleship.length).toBe(4);
-    expect(gameboard.ship.destroyer.length).toBe(4);
+    expect(gameboard.ship.destroyer.length).toBe(3);
     expect(gameboard.ship.submarine.length).toBe(3);
     expect(gameboard.ship.patrolboat.length).toBe(2);
 
@@ -46,4 +46,5 @@ it('Gameboard ships coordinats after placement', () => {
     gameboard.axis();
     gameboard.put(gameboard.ship.submarine, 7, 7);
     gameboard.put(gameboard.ship.patrolboat, 3, 1);
+    
 });
