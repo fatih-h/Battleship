@@ -1,4 +1,4 @@
-import Gameboard from '../source/gameboard';
+import Gameboard from '../sources/gameboard';
 
 it('Gameboard length', () => {
     let gameboard = new Gameboard();

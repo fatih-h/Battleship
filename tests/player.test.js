@@ -1,5 +1,5 @@
-import Player from '../source/player';
-import Gameboard from '../source/gameboard';
+import Player from '../sources/player';
+import Gameboard from '../sources/gameboard';
 
 it('Creating Player1 and testing board', () => {
     

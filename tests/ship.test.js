@@ -1,4 +1,4 @@
-import Ship from '../source/ship';
+import Ship from '../sources/ship';
 
 it('Ship length', () => {
     let ship = new Ship(2);
