@@ -15,6 +15,16 @@ function Player(pl){
         pl.put(pl.ship.patrolboat, 8, 7);
     }
 
+    this.secondPlace = () => {
+        pl.put(pl.ship.carrier, 1, 7);
+        pl.axis('y');
+        pl.put(pl.ship.battleship, 8, 6);
+        pl.put(pl.ship.destroyer, 4, 4);
+        pl.axis('x');
+        pl.put(pl.ship.submarine, 1, 2);
+        pl.put(pl.ship.patrolboat, 6, 0);
+    }
+
     this.aiRandomise = () => {
 
         let random = (length) => { 

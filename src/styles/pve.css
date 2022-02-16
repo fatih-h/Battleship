@@ -1,0 +1,51 @@
+.pve-main{
+    height: 100vh;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20vh 80vh;
+    grid-template-areas: 
+    'board'
+    'container'
+    ;
+    text-align: center;
+}
+
+.pve-board{
+    grid-area: board;
+    display:flex;
+}
+
+.pve-scoreText{
+    align-self: center;
+    flex:1;
+
+}
+
+.pve-container{
+    grid-area: container;
+    display:grid;
+    grid-template-columns:1fr 25em 1fr 25em 1fr;
+    grid-template-rows: 1fr 25em 4fr;
+    grid-template-areas: 
+    '. . . . .'
+    '. fP . sP .'
+    '. . . . .'
+    ;
+}
+.pve-firstP{
+    grid-area: fP;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.pve-secondP{
+    grid-area: sP;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.pve-point{
+    flex:0 0 10%;
+    height: 2.5em;
+    width: 2.5em;
+}

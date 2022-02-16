@@ -1,9 +1,10 @@
 import home from './home';   
+import pve from './pve';
 import '../styles/style.css';
-import '../styles/home.css';
+
 
 const content = document.getElementById('content');
 
 
-content.appendChild(home());
+content.appendChild(pve());
 
