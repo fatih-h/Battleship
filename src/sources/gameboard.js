@@ -15,6 +15,7 @@ function Gameboard(){
     let axis = 'x';
     let clear = false;
     
+    
     /*Object Methods */
     this.ship = {
         carrier : new Ship(5),
@@ -22,6 +23,7 @@ function Gameboard(){
         destroyer : new Ship(3),
         submarine : new Ship(3),
         patrolboat : new Ship(2),
+
         allSunk: () => {
             if(this.ship.carrier.isSunk() && 
             this.ship.battleship.isSunk() && 
@@ -56,7 +58,6 @@ function Gameboard(){
                 for(let i = 0 ; i < veh.length ;i++){
                     arr[y][x + i].veh = veh;
                     arr[y][x + i].position = i;
-                    
                 }
             }
             

@@ -48,4 +48,36 @@
     flex:0 0 10%;
     height: 2.5em;
     width: 2.5em;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.pve-point:nth-child(10),
+.pve-point:nth-child(20),
+.pve-point:nth-child(30),
+.pve-point:nth-child(40),
+.pve-point:nth-child(50),
+.pve-point:nth-child(60),
+.pve-point:nth-child(70),
+.pve-point:nth-child(80),
+.pve-point:nth-child(90)
+{
+    border-right: 1px solid black;
+}
+
+.pve-point:nth-child(91),
+.pve-point:nth-child(92),
+.pve-point:nth-child(93),
+.pve-point:nth-child(94),
+.pve-point:nth-child(95),
+.pve-point:nth-child(96),
+.pve-point:nth-child(97),
+.pve-point:nth-child(98),
+.pve-point:nth-child(99){
+    border-bottom: 1px solid black;
+}
+
+.pve-point:nth-child(100){
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }

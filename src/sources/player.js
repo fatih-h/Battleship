@@ -17,10 +17,10 @@ function Player(pl){
 
     this.secondPlace = () => {
         pl.put(pl.ship.carrier, 1, 7);
-        pl.axis('y');
+        pl.axisChange('y');
         pl.put(pl.ship.battleship, 8, 6);
         pl.put(pl.ship.destroyer, 4, 4);
-        pl.axis('x');
+        pl.axisChange('x');
         pl.put(pl.ship.submarine, 1, 2);
         pl.put(pl.ship.patrolboat, 6, 0);
     }
