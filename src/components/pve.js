@@ -5,10 +5,10 @@ import '../styles/pve.css';
 function pve(){
 
     let player1 = new Player(new Gameboard());
-    let player2 = new Player(new Gameboard());
+    let ai = new Player(new Gameboard());
 
     player1.standartPlace();
-    player2.secondPlace();
+    ai.aiRandomise();
 
 
     let main = document.createElement('div');
@@ -18,7 +18,7 @@ function pve(){
     let text = document.createElement('h3');
     let containerP = document.createElement('div');
     let firstP = document.createElement('div');
-    let secondP = document.createElement('div');
+    let aiP = document.createElement('div');
 
     for(let i = 0; i < 10; i++){
         for(let j = 0; j < 10; j++){
@@ -36,7 +36,7 @@ function pve(){
             point.classList.add('pve-point');
             point.setAttribute('data-x', `${j}`);
             point.setAttribute('data-y', `${i}`); 
-            secondP.appendChild(point);
+            aiP.appendChild(point);
         }
     }
 
@@ -46,32 +46,44 @@ function pve(){
     text.classList.add('pve-scoreText');
     containerP.classList.add('pve-container');
     firstP.classList.add('pve-firstP');
-    secondP.classList.add('pve-secondP');
-
-    Array.from(firstP.children).forEach(e => {
-        e.addEventListener('click', (event) => {
-            let x = event.target.getAttribute('data-x');
-            let y = event.target.getAttribute('data-y');
-            player1.getPlayer().receiveAttack(x, y);
-        },{once: true});
-    });
-
-    Array.from(secondP.children).forEach(e => {
-        e.addEventListener('click', (event) => {
-            let x = event.target.getAttribute('data-x');
-            let y = event.target.getAttribute('data-y');
-            player2.getPlayer().receiveAttack(x, y);
-        }, {once: true});
-    });
+    aiP.classList.add('pve-aiP');
     
-    
-
     board.appendChild(text);
     containerP.appendChild(firstP);
-    containerP.appendChild(secondP);
+    containerP.appendChild(aiP);
+    
+    let counter = 0;
+    Array.from(containerP.children).forEach(e => {
+        e.addEventListener('click', (event) => {
+            if(e.classList[0] == 'pve-firstP' && counter % 2 != 0){
+                firstBoard(event);
+                counter++;
+            }
+            else if(e.classList[0] == 'pve-aiP' && counter % 2 == 0){
+               secondBoard(event);
+               counter++;
+            }
+        });
+    });
+
+    function firstBoard(event){
+        let x = event.target.getAttribute('data-x');
+        let y = event.target.getAttribute('data-y');
+        player1.aiShot();
+        console.log(player1.getPlayer().board());
+    }
+
+    function secondBoard(event){
+        let x = event.target.getAttribute('data-x');
+        let y = event.target.getAttribute('data-y');
+        ai.getPlayer().receiveAttack(x, y);
+        console.log(ai.getPlayer().board());        
+    }
+    
+
+    
     main.appendChild(board);
     main.appendChild(containerP);
-
     return main;
 }
 

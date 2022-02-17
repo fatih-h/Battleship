@@ -1,0 +1,83 @@
+.pvp-main{
+    height: 100vh;
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20vh 80vh;
+    grid-template-areas: 
+    'board'
+    'container'
+    ;
+    text-align: center;
+}
+
+.pvp-board{
+    grid-area: board;
+    display:flex;
+}
+
+.pvp-scoreText{
+    align-self: center;
+    flex:1;
+
+}
+
+.pvp-container{
+    grid-area: container;
+    display:grid;
+    grid-template-columns:1fr 25em 1fr 25em 1fr;
+    grid-template-rows: 1fr 25em 4fr;
+    grid-template-areas: 
+    '. . . . .'
+    '. fP . sP .'
+    '. . . . .'
+    ;
+}
+.pvp-firstP{
+    grid-area: fP;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.pvp-secondP{
+    grid-area: sP;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.pvp-point{
+    flex:0 0 10%;
+    height: 2.5em;
+    width: 2.5em;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+}
+
+.pvp-point:nth-child(10),
+.pvp-point:nth-child(20),
+.pvp-point:nth-child(30),
+.pvp-point:nth-child(40),
+.pvp-point:nth-child(50),
+.pvp-point:nth-child(60),
+.pvp-point:nth-child(70),
+.pvp-point:nth-child(80),
+.pvp-point:nth-child(90)
+{
+    border-right: 1px solid black;
+}
+
+.pvp-point:nth-child(91),
+.pvp-point:nth-child(92),
+.pvp-point:nth-child(93),
+.pvp-point:nth-child(94),
+.pvp-point:nth-child(95),
+.pvp-point:nth-child(96),
+.pvp-point:nth-child(97),
+.pvp-point:nth-child(98),
+.pvp-point:nth-child(99){
+    border-bottom: 1px solid black;
+}
+
+.pvp-point:nth-child(100){
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}

@@ -28,7 +28,7 @@
     grid-template-rows: 1fr 25em 4fr;
     grid-template-areas: 
     '. . . . .'
-    '. fP . sP .'
+    '. fP . aiP .'
     '. . . . .'
     ;
 }
@@ -38,8 +38,8 @@
     flex-wrap: wrap;
 }
 
-.pve-secondP{
-    grid-area: sP;
+.pve-aiP{
+    grid-area: aiP;
     display:flex;
     flex-wrap: wrap;
 }
