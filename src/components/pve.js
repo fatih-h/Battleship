@@ -63,10 +63,10 @@ function pve() {
         let index = (player1.getRecords()[0].y * 10) + player1.getRecords()[0].x;        
         let stil = firstP.children[index];
         if(player1.getRecords()[0].hasOwnProperty('position')){
-            stil.style = "background: url('../src/icons/explosion.png') no-repeat center center;";
+            stil.style = "background: url('../dist/icons/explosion.png') no-repeat center center;";
         }
         else{
-            stil.style = "background: url('../src/icons/boom.png') no-repeat center center;";
+            stil.style = "background: url('../dist/icons/boom.png') no-repeat center center;";
         }
 
     }
@@ -76,10 +76,10 @@ function pve() {
         let y = event.target.getAttribute('data-y');
         ai.getPlayer().receiveAttack(x, y);
         if(ai.getPlayer().board()[y][x].hasOwnProperty('position')){
-            event.target.style = "background: url('../src/icons/explosion.png') no-repeat center center;";
+            event.target.style = "background: url('../dist/icons/explosion.png') no-repeat center center;";
         }
         else{
-            event.target.style = "background: url('../src/icons/boom.png') no-repeat center center;";
+            event.target.style = "background: url('../dist/icons/boom.png') no-repeat center center;";
             
         }
     }

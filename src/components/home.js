@@ -38,8 +38,6 @@ function home(){
     });
 
     pvpButton.addEventListener('click', () => {
-        // main.parentElement.append(pvp());
-        // main.remove();
         alert('Under construction');
     });
 
