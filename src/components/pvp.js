@@ -66,18 +66,32 @@ function pvp(){
         });
     });
 
+    
+
     function firstBoard(event){
         let x = event.target.getAttribute('data-x');
         let y = event.target.getAttribute('data-y');
-        player1.getPlayer().receiveAttack(x, y);
-        console.log(player1.getPlayer().board());
+        player1.getPlayer().receiveAttack(x, y); 
+        if(player1.getPlayer().board()[y][x].hasOwnProperty('position')){
+            event.target.style = "background: url('../src/icons/explosion.png') no-repeat center center;";
+        }
+        else{
+            event.target.style = "background: url('../src/icons/boom.png') no-repeat center center;";
+            
+        }
     }
 
     function secondBoard(event){
         let x = event.target.getAttribute('data-x');
-        let y = event.target.getAttribute('data-y');
-        player2.getPlayer().receiveAttack(x, y);
-        console.log(player2.getPlayer().board());        
+        let y = event.target.getAttribute('data-y');        
+        player2.getPlayer().receiveAttack(x, y); 
+        if(player2.getPlayer().board()[y][x].hasOwnProperty('position')){
+            event.target.style = "background: url('../src/icons/explosion.png') no-repeat center center;";
+        }
+        else{
+            event.target.style = "background: url('../src/icons/boom.png') no-repeat center center;";
+            
+        }       
     }
     
 

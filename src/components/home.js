@@ -1,4 +1,6 @@
 import '../styles/home.css';
+import pvp  from './pvp';
+import pve from './pve';
 
 function home(){
 
@@ -29,6 +31,17 @@ function home(){
     section.classList.add('home-section');
     pvpButton.classList.add('home-pvp');
     pveButton.classList.add('home-pve');
+
+    pveButton.addEventListener('click', () => {
+        main.parentElement.appendChild(pve());
+        main.remove();        
+    });
+
+    pvpButton.addEventListener('click', () => {
+        // main.parentElement.append(pvp());
+        // main.remove();
+        alert('Under construction');
+    });
 
     header.appendChild(title);
     section.appendChild(pvpButton);

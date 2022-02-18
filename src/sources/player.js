@@ -111,7 +111,7 @@ function Player(pl){
                }
             }
             if(isRandom){
-                this.shotRecords.push(pl.board()[y][x])
+                this.shotRecords.unshift(pl.board()[y][x])
                 pl.receiveAttack(x, y);
                 control = true;
             } 
